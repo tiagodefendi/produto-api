@@ -3,7 +3,7 @@ const { Client } = require('pg');
 const fs = require('fs');
 const path = require('path');
 
-// Configuração do cliente do banco de dados
+// setting client database
 const client = new Client({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -12,10 +12,10 @@ const client = new Client({
     database: 'postgres'
 });
 
-// Função para criar o banco de dados se não existir
+// create database if it not exists yet
 const createDatabaseIfNotExists = async () => {
     try {
-        await client.connect(); // Conectar ao banco de dados antes de verificar
+        await client.connect(); // connecting database
 
         const dbName = process.env.DB_DATABASE;
         const res = await client.query(
@@ -34,7 +34,7 @@ const createDatabaseIfNotExists = async () => {
     }
 };
 
-// Função para executar scripts SQL
+// run sql scripts
 const runSQLScript = async (filename) => {
     try {
         const file_path = path.join(__dirname, 'sql', `${filename}.sql`);
@@ -47,15 +47,15 @@ const runSQLScript = async (filename) => {
     }
 };
 
-// Função principal para configurar o banco de dados
+// configuring setup to database
 const setupDatabase = async () => {
-    await createDatabaseIfNotExists(); // Certifique-se de que o banco de dados existe
-    await runSQLScript('createTables'); // Criar tabelas
-    await runSQLScript('seed'); // Popular tabelas
+    await createDatabaseIfNotExists();
+    await runSQLScript('createTables'); // createTables
+    await runSQLScript('seed'); // population database
 };
 
-// Executar a configuração do banco de dados
+// setup
 setupDatabase().catch(console.error);
 
-// Exportar o cliente
+// export client of database
 module.exports = client;

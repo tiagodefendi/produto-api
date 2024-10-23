@@ -1,22 +1,22 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const productsRouter = require('./routes/products');
-const dbClient = require('./database'); // Importando a configuração do banco de dados
+const dbClient = require('./database');
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Usar o roteador de produtos
+// products route
 app.use('/products', productsRouter);
 
-// Iniciar o servidor
+// run server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
-// Encerrar a conexão do banco de dados ao sair do aplicativo
+// end database connection when turn off server
 process.on('SIGINT', async () => {
     await dbClient.end();
     console.log('Database connection closed');

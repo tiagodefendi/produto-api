@@ -2,7 +2,7 @@ const express = require('express');
 const client = require('../database'); // Importando a configuração do banco de dados
 const router = express.Router();
 
-// Rota para obter todos os produtos
+// route for all
 router.get('/', async (req, res) => {
     try {
         const result = await client.query('SELECT * FROM products');
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Rota para obter um produto específico pelo ID
+// route per id
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -30,5 +30,5 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Exportar o roteador
+// exporting router
 module.exports = router;
