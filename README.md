@@ -64,7 +64,7 @@ git clone https://github.com/tiagodefendi/produto-api.git
 
 Na sequência é necessário criar um arquivo ```.env```. O modelo pode ser encontrado no arquivo ```.env.example``` localizado na raiz do projeto
 
-Se você rodar o sistema em modo local (servidores backend e frontend na mesma máquina), apenas crie uma cópia do arquivo ```.env.example``` para ```.env```
+Se você rodar o sistema em modo local, apenas crie uma cópia do arquivo ```.env.example``` para ```.env``` e configure com as suas informações
 
 ```{shell}
 cp .env.example .env
